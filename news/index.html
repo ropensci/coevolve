@@ -35,7 +35,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/ScottClaessens/coevolve/" class="external-link">
+  <a href="https://github.com/ropensci/coevolve/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
 
   </a>
@@ -50,24 +50,24 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/ScottClaessens/coevolve/blob/v1.2.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/ropensci/coevolve/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.2.1" id="coevolve-121">coevolve 1.2.1<a class="anchor" aria-label="anchor" href="#coevolve-121"></a></h2>
 <div class="section level4">
 <h4 id="new-features-1-2-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-2-1"></a></h4>
-<ul><li>Added further documentation about repeated observations models (<a href="https://github.com/ScottClaessens/coevolve/issues/120" class="external-link">#120</a>)</li>
-<li>Added vignette “Algorithmic scaling” (<a href="https://github.com/ScottClaessens/coevolve/issues/121" class="external-link">#121</a>)</li>
-<li>Models with Gaussian variables and no repeated observations now use a conditionally non-centred parameterisation for latent terminal drift, i.e. the terminal drift of non-Gaussian variables and of missing Gaussian values. Latent drift is written as a standard normal innovation conditional on the observed Gaussian residuals of the same taxon. This is a change of variables that leaves the model, the posterior, and the pointwise log-likelihood unchanged, but removes a funnel between the drift parameters and the latent terminal drift that caused poor mixing in mixed Gaussian and non-Gaussian models. Thanks to <a href="https://github.com/yuhangxoox" class="external-link">@yuhangxoox</a> for the diagnosis (<a href="https://github.com/ScottClaessens/coevolve/issues/124" class="external-link">#124</a>)</li>
+<ul><li>Added further documentation about repeated observations models (<a href="https://github.com/ropensci/coevolve/issues/120" class="external-link">#120</a>)</li>
+<li>Added vignette “Algorithmic scaling” (<a href="https://github.com/ropensci/coevolve/issues/121" class="external-link">#121</a>)</li>
+<li>Models with Gaussian variables and no repeated observations now use a conditionally non-centred parameterisation for latent terminal drift, i.e. the terminal drift of non-Gaussian variables and of missing Gaussian values. Latent drift is written as a standard normal innovation conditional on the observed Gaussian residuals of the same taxon. This is a change of variables that leaves the model, the posterior, and the pointwise log-likelihood unchanged, but removes a funnel between the drift parameters and the latent terminal drift that caused poor mixing in mixed Gaussian and non-Gaussian models. Thanks to <a href="https://github.com/yuhangxoox" class="external-link">@yuhangxoox</a> for the diagnosis (<a href="https://github.com/ropensci/coevolve/issues/124" class="external-link">#124</a>)</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-2-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-2-1"></a></h4>
 <ul><li>Fixed the continuous time intercept term in the expected change along a branch, <code>A^-1 (exp(A t) - I) b</code>. Since version 1.0.0 this matrix was symmetrised before being multiplied by <code>b</code>, which is only correct when the selection matrix <code>A</code> is symmetric (e.g., no cross-selection effects). Both the Stan and JAX backends now use the exact expression. In our comparisons the selection (<code>A</code>) and drift (<code>Q</code>) parameters were essentially unchanged, because <code>b</code> is weakly identified and absorbs most of the difference. Posterior estimates of <code>b</code> itself can shift; in one simulated example they moved by up to about 0.6 posterior standard deviations</li>
-<li>Fixed <code><a href="../reference/coev_plot_predictive_check.html">coev_plot_predictive_check()</a></code> when <code>nuts_sampler = "nutpie"</code>. The JAX backend now returns <code>yrep</code> posterior predictions alongside the other model parameters, matching the Stan backend (<a href="https://github.com/ScottClaessens/coevolve/issues/118" class="external-link">#118</a>)</li>
+<li>Fixed <code><a href="../reference/coev_plot_predictive_check.html">coev_plot_predictive_check()</a></code> when <code>nuts_sampler = "nutpie"</code>. The JAX backend now returns <code>yrep</code> posterior predictions alongside the other model parameters, matching the Stan backend (<a href="https://github.com/ropensci/coevolve/issues/118" class="external-link">#118</a>)</li>
 <li>
-<code>log_lik = TRUE</code> is now supported with <code>nuts_sampler = "nutpie"</code>. The JAX backend previously ignored the argument and returned no <code>log_lik</code>, so <code>loo</code> and <code>waic</code> could not be computed from nutpie fits (<a href="https://github.com/ScottClaessens/coevolve/issues/118" class="external-link">#118</a>)</li>
-<li>Fixed <code>prior_only = TRUE</code> for models with Gaussian variables and no repeated observations. <code>terminal_drift</code> only received a prior inside the likelihood block, leaving it improper when the likelihood was skipped. Sampling failed to initialise with <code>nuts_sampler = "nutpie"</code> and was unreliable with <code>nuts_sampler = "stan"</code> (<a href="https://github.com/ScottClaessens/coevolve/issues/118" class="external-link">#118</a>)</li>
+<code>log_lik = TRUE</code> is now supported with <code>nuts_sampler = "nutpie"</code>. The JAX backend previously ignored the argument and returned no <code>log_lik</code>, so <code>loo</code> and <code>waic</code> could not be computed from nutpie fits (<a href="https://github.com/ropensci/coevolve/issues/118" class="external-link">#118</a>)</li>
+<li>Fixed <code>prior_only = TRUE</code> for models with Gaussian variables and no repeated observations. <code>terminal_drift</code> only received a prior inside the likelihood block, leaving it improper when the likelihood was skipped. Sampling failed to initialise with <code>nuts_sampler = "nutpie"</code> and was unreliable with <code>nuts_sampler = "stan"</code> (<a href="https://github.com/ropensci/coevolve/issues/118" class="external-link">#118</a>)</li>
 <li>Fixed the pointwise <code>log_lik</code> and <code>yrep</code> for Gaussian variables with missing data. The generated quantities block used the <code>-9999</code> missing value placeholder when constructing residuals, which corrupted the conditional densities of the other variables of the same observation</li>
 </ul></div>
 </div>
@@ -75,40 +75,40 @@
 <h2 class="page-header" data-toc-text="1.2.0" id="coevolve-120">coevolve 1.2.0<a class="anchor" aria-label="anchor" href="#coevolve-120"></a></h2>
 <div class="section level4">
 <h4 id="new-features-1-2-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-2-0"></a></h4>
-<ul><li>Added <code><a href="../reference/coev_ancestral_states.html">coev_ancestral_states()</a></code> for extracting posterior estimates of ancestral trait values at internal phylogenetic nodes, on either the latent or response scale (<a href="https://github.com/ScottClaessens/coevolve/issues/86" class="external-link">#86</a>)</li>
+<ul><li>Added <code><a href="../reference/coev_ancestral_states.html">coev_ancestral_states()</a></code> for extracting posterior estimates of ancestral trait values at internal phylogenetic nodes, on either the latent or response scale (<a href="https://github.com/ropensci/coevolve/issues/86" class="external-link">#86</a>)</li>
 <li>Added vignette “Ancestral state reconstruction”</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-2-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-2-0"></a></h4>
-<ul><li>Fixed issue with plotting functions when <code>nuts_sampler = "nutpie"</code> (<a href="https://github.com/ScottClaessens/coevolve/issues/114" class="external-link">#114</a>)</li>
+<ul><li>Fixed issue with plotting functions when <code>nuts_sampler = "nutpie"</code> (<a href="https://github.com/ropensci/coevolve/issues/114" class="external-link">#114</a>)</li>
 </ul></div>
 <div class="section level4">
 <h4 id="other-changes-1-2-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-1-2-0"></a></h4>
-<ul><li>Updated documentation (<a href="https://github.com/ScottClaessens/coevolve/issues/111" class="external-link">#111</a>)</li>
-<li>Fixed cmdstanr location in documentation (<a href="https://github.com/ScottClaessens/coevolve/issues/112" class="external-link">#112</a>)</li>
-<li>Responded to <a href="https://ropensci.org/" class="external-link">rOpenSci</a> package review (<a href="https://github.com/ScottClaessens/coevolve/issues/113" class="external-link">#113</a>)</li>
-<li>Added package citation (<a href="https://github.com/ScottClaessens/coevolve/issues/116" class="external-link">#116</a>)</li>
+<ul><li>Updated documentation (<a href="https://github.com/ropensci/coevolve/issues/111" class="external-link">#111</a>)</li>
+<li>Fixed cmdstanr location in documentation (<a href="https://github.com/ropensci/coevolve/issues/112" class="external-link">#112</a>)</li>
+<li>Responded to <a href="https://ropensci.org/" class="external-link">rOpenSci</a> package review (<a href="https://github.com/ropensci/coevolve/issues/113" class="external-link">#113</a>)</li>
+<li>Added package citation (<a href="https://github.com/ropensci/coevolve/issues/116" class="external-link">#116</a>)</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.1.0" id="coevolve-110">coevolve 1.1.0<a class="anchor" aria-label="anchor" href="#coevolve-110"></a></h2>
 <div class="section level4">
 <h4 id="new-features-1-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-0"></a></h4>
-<ul><li>Allowed for single traits (<a href="https://github.com/ScottClaessens/coevolve/issues/107" class="external-link">#107</a>)</li>
-<li>Added pure JAX/NumPyro backend via <code>nuts_sampler = "nutpie"</code>. Uses nutpie’s Rust NUTS sampler with JAX gradients for ~5x faster sampling than Stan on typical models. Requires <code>pip install jax numpyro nutpie</code> (<a href="https://github.com/ScottClaessens/coevolve/issues/109" class="external-link">#109</a>)</li>
+<ul><li>Allowed for single traits (<a href="https://github.com/ropensci/coevolve/issues/107" class="external-link">#107</a>)</li>
+<li>Added pure JAX/NumPyro backend via <code>nuts_sampler = "nutpie"</code>. Uses nutpie’s Rust NUTS sampler with JAX gradients for ~5x faster sampling than Stan on typical models. Requires <code>pip install jax numpyro nutpie</code> (<a href="https://github.com/ropensci/coevolve/issues/109" class="external-link">#109</a>)</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.0" id="coevolve-100">coevolve 1.0.0<a class="anchor" aria-label="anchor" href="#coevolve-100"></a></h2>
 <div class="section level4">
 <h4 id="new-features-1-0-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h4>
-<ul><li>Added <code>nutpie</code> as an alternative sampler for the Stan models (<a href="https://github.com/ScottClaessens/coevolve/issues/92" class="external-link">#92</a>)</li>
-<li>Cached matrix computations when branch lengths are identical (<a href="https://github.com/ScottClaessens/coevolve/issues/93" class="external-link">#93</a>)</li>
-<li>Implemented Hilbert-space approximate Gaussian processes for spatial control, adding the <code>lon_lat</code> argument and deprecating the <code>dist_mat</code> argument in <code><a href="../reference/coev_fit.html">coev_fit()</a></code> (<a href="https://github.com/ScottClaessens/coevolve/issues/103" class="external-link">#103</a>)</li>
+<ul><li>Added <code>nutpie</code> as an alternative sampler for the Stan models (<a href="https://github.com/ropensci/coevolve/issues/92" class="external-link">#92</a>)</li>
+<li>Cached matrix computations when branch lengths are identical (<a href="https://github.com/ropensci/coevolve/issues/93" class="external-link">#93</a>)</li>
+<li>Implemented Hilbert-space approximate Gaussian processes for spatial control, adding the <code>lon_lat</code> argument and deprecating the <code>dist_mat</code> argument in <code><a href="../reference/coev_fit.html">coev_fit()</a></code> (<a href="https://github.com/ropensci/coevolve/issues/103" class="external-link">#103</a>)</li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-0-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h4>
-<ul><li>Fixed issue with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> when <code>estimate_residual = FALSE</code> (<a href="https://github.com/ScottClaessens/coevolve/issues/95" class="external-link">#95</a>)</li>
+<ul><li>Fixed issue with <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> when <code>estimate_residual = FALSE</code> (<a href="https://github.com/ropensci/coevolve/issues/95" class="external-link">#95</a>)</li>
 </ul></div>
 <div class="section level4">
 <h4 id="other-changes-1-0-0">Other Changes<a class="anchor" aria-label="anchor" href="#other-changes-1-0-0"></a></h4>
@@ -119,8 +119,8 @@
 <li>Implemented <a href="https://docs.ropensci.org/srr/" class="external-link">srr</a> compliance checks</li>
 <li>Added continuous integration checks using GitHub Actions</li>
 <li>Reduced cyclomatic complexity for some functions</li>
-<li>Re-factored Stan code generation to use <a href="https://github.com/edwindj/whisker" class="external-link">whisker</a> templates (<a href="https://github.com/ScottClaessens/coevolve/issues/99" class="external-link">#99</a>)</li>
-<li>Implemented automatic test fixture re-generation in GitHub Actions (<a href="https://github.com/ScottClaessens/coevolve/issues/100" class="external-link">#100</a>)</li>
+<li>Re-factored Stan code generation to use <a href="https://github.com/edwindj/whisker" class="external-link">whisker</a> templates (<a href="https://github.com/ropensci/coevolve/issues/99" class="external-link">#99</a>)</li>
+<li>Implemented automatic test fixture re-generation in GitHub Actions (<a href="https://github.com/ropensci/coevolve/issues/100" class="external-link">#100</a>)</li>
 </ul></div>
 </div>
     <div class="section level2">
