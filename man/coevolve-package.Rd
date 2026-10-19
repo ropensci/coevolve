@@ -13,9 +13,9 @@ Fit Bayesian generalized dynamic phylogenetic models using 'Stan' or 'JAX'. The 
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ScottClaessens/coevolve}
+  \item \url{https://github.com/ropensci/coevolve}
   \item \url{https://scottclaessens.github.io/coevolve/}
-  \item Report bugs at \url{https://github.com/ScottClaessens/coevolve/issues}
+  \item Report bugs at \url{https://github.com/ropensci/coevolve/issues}
 }
 
 }

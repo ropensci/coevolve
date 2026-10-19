@@ -358,7 +358,7 @@ We hope that this package is a useful addition to the phylogenetic comparative
 methods toolkit. If you have any questions about the package, please feel free
 to email Scott Claessens (scott.claessens@gmail.com) or Erik Ringen
 (erikjacob.ringen@uzh.ch) or raise an issue over on GitHub:
-https://github.com/ScottClaessens/coevolve/issues
+https://github.com/ropensci/coevolve/issues
 
 ## References
 

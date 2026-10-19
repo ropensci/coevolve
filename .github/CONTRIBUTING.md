@@ -9,19 +9,19 @@ Please note that the coevolve package is released with a
 
 ## Discussions
 
-At <https://github.com/ScottClaessens/coevolve/discussions>, you can post 
+At <https://github.com/ropensci/coevolve/discussions>, you can post 
 general questions, brainstorm ideas, and ask for help with the coevolve package.
 
 ## Issues
 
-<https://github.com/ScottClaessens/coevolve/issues> is for maintenance tasks and 
+<https://github.com/ropensci/coevolve/issues> is for maintenance tasks and 
 feature requests.
 
 ## Development
 
 This package is in an initially stable state of development, with a great deal 
 of active subsequent development envisioned (see issues on GitHub:
-<https://github.com/ScottClaessens/coevolve/issues>).
+<https://github.com/ropensci/coevolve/issues>).
 
 External code contributions are extremely helpful in the right circumstances. 
 Here are the recommended steps.
@@ -49,9 +49,9 @@ with the `lint_package()` function from the
 cover all the new or changed functionality in your pull request.
 * Run overall package checks with `devtools::check()` and `goodpractice::gp()`
 * Describe your contribution in the project's 
-[`NEWS.md`](https://github.com/ScottClaessens/coevolve/blob/main/NEWS.md) file.
+[`NEWS.md`](https://github.com/ropensci/coevolve/blob/main/NEWS.md) file.
 Be sure to mention relevent GitHub issue numbers and your GitHub name.
 * If you feel contribution is substantial enough for official author or 
 contributor status, please add yourself to the `Authors@R` field of the 
-[`DESCRIPTION`](https://github.com/ScottClaessens/coevolve/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/ropensci/coevolve/blob/main/DESCRIPTION)
 file.

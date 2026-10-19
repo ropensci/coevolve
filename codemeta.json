@@ -5,8 +5,8 @@
   "description": "Fit Bayesian generalized dynamic phylogenetic models using 'Stan'. The package allows an abritrary number of variables with different response distributions to coevolve on a phylogenetic tree via an Ornstein-Uhlenbeck evolutionary process, allowing users to assess directionality between coevolving variables.",
   "name": "coevolve: Fit Bayesian Generalized Dynamic Phylogenetic Models using 'Stan'",
   "relatedLink": "https://scottclaessens.github.io/coevolve/",
-  "codeRepository": "https://github.com/ScottClaessens/coevolve",
-  "issueTracker": "https://github.com/ScottClaessens/coevolve/issues",
+  "codeRepository": "https://github.com/ropensci/coevolve",
+  "issueTracker": "https://github.com/ropensci/coevolve/issues",
   "license": "file LICENSE",
   "version": "0.1.0",
   "programmingLanguage": {
@@ -319,9 +319,9 @@
     "SystemRequirements": null
   },
   "fileSize": "2563.849KB",
-  "releaseNotes": "https://github.com/ScottClaessens/coevolve/blob/master/NEWS.md",
-  "readme": "https://github.com/ScottClaessens/coevolve/blob/main/README.md",
-  "contIntegration": "https://github.com/ScottClaessens/coevolve/actions/workflows/R-CMD-check.yaml",
+  "releaseNotes": "https://github.com/ropensci/coevolve/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/coevolve/blob/main/README.md",
+  "contIntegration": "https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml",
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": ["bayesian-statistics", "evolution", "r-package", "stan", "statistical-models", "coevolve"]
 }

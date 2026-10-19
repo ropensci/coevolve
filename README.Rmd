@@ -25,9 +25,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
   [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-  [![R-CMD-check](https://github.com/ScottClaessens/coevolve/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions/workflows/R-CMD-check.yaml)
-  [![Codecov test coverage](https://codecov.io/gh/ScottClaessens/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ScottClaessens/coevolve)
-  [![lint](https://github.com/ScottClaessens/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions?query=workflow%3Alint)
+  [![R-CMD-check](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml)
+  [![Codecov test coverage](https://codecov.io/gh/ropensci/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ScottClaessens/coevolve)
+  [![lint](https://github.com/ropensci/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions?query=workflow%3Alint)
   [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/717_status.svg)](https://github.com/ropensci/software-review/issues/717)
 <!-- badges: end -->
 
@@ -85,11 +85,10 @@ For more information about the model, refer to the introductory methods paper
 
 ## Installation
 
-You can install the development version of **coevolve** with:
+You can install the **coevolve** package with:
 
 ```{r install_coevolve, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("ScottClaessens/coevolve")
+install.packages("coevolve", repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## How to use coevolve
@@ -169,13 +168,15 @@ time.
 - [Methods paper](https://doi.org/10.1111/2041-210x.70303)
 - [Lecture and R workshop](https://www.youtube.com/watch?v=9dsTeVflA1s)
 
+## Code of conduct
+
+Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). 
+By contributing to this project, you agree to abide by its terms.
+
 ## Citing coevolve
 
-When using the **coevolve** package, please cite the following papers:
+When using the **coevolve** package, please cite the following paper:
 
-- Ringen, E., Martin, J. S., & Jaeggi, A. (2021). Novel phylogenetic methods 
-  reveal that resource-use intensification drives the evolution of "complex" 
-  societies. _EcoEvoRXiv_. https://doi.org/10.32942/osf.io/wfp95
 - Ringen, E., Claessens, S., Martin, J. S., & Jaeggi, A. V. (2026). Trait 
   coevolution and causal inference using generalized dynamic phylogenetic 
   models. _Methods in Ecology and Evolution_, _17_(6), 1818-1836. 

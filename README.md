@@ -10,10 +10,10 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/ScottClaessens/coevolve/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/ScottClaessens/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ScottClaessens/coevolve)
-[![lint](https://github.com/ScottClaessens/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions?query=workflow%3Alint)
+coverage](https://codecov.io/gh/ropensci/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ScottClaessens/coevolve)
+[![lint](https://github.com/ropensci/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions?query=workflow%3Alint)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/717_status.svg)](https://github.com/ropensci/software-review/issues/717)
 <!-- badges: end -->
@@ -61,11 +61,10 @@ paper [here](https://doi.org/10.1111/2041-210x.70303).
 
 ## Installation
 
-You can install the development version of **coevolve** with:
+You can install the **coevolve** package with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("ScottClaessens/coevolve")
+install.packages("coevolve", repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## How to use coevolve
@@ -101,14 +100,14 @@ fit <-
   )
 #> Running MCMC with 4 parallel chains...
 #> 
-#> Chain 4 finished in 280.8 seconds.
-#> Chain 1 finished in 290.0 seconds.
-#> Chain 3 finished in 380.7 seconds.
-#> Chain 2 finished in 382.0 seconds.
+#> Chain 4 finished in 282.2 seconds.
+#> Chain 1 finished in 301.3 seconds.
+#> Chain 3 finished in 372.3 seconds.
+#> Chain 2 finished in 397.0 seconds.
 #> 
 #> All 4 chains finished successfully.
-#> Mean chain execution time: 333.3 seconds.
-#> Total execution time: 382.1 seconds.
+#> Mean chain execution time: 338.2 seconds.
+#> Total execution time: 397.1 seconds.
 #> Warning: 10 of 4000 (0.0%) transitions ended with a divergence.
 #> See https://mc-stan.org/misc/warnings for details.
 ```
@@ -198,14 +197,16 @@ evolutionary time.
 - [Methods paper](https://doi.org/10.1111/2041-210x.70303)
 - [Lecture and R workshop](https://www.youtube.com/watch?v=9dsTeVflA1s)
 
+## Code of conduct
+
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.
+
 ## Citing coevolve
 
-When using the **coevolve** package, please cite the following papers:
+When using the **coevolve** package, please cite the following paper:
 
-- Ringen, E., Martin, J. S., & Jaeggi, A. (2021). Novel phylogenetic
-  methods reveal that resource-use intensification drives the evolution
-  of “complex” societies. *EcoEvoRXiv*.
-  <https://doi.org/10.32942/osf.io/wfp95>
 - Ringen, E., Claessens, S., Martin, J. S., & Jaeggi, A. V. (2026).
   Trait coevolution and causal inference using generalized dynamic
   phylogenetic models. *Methods in Ecology and Evolution*, *17*(6),
