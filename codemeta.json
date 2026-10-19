@@ -4,7 +4,7 @@
   "identifier": "coevolve",
   "description": "Fit Bayesian generalized dynamic phylogenetic models using 'Stan'. The package allows an abritrary number of variables with different response distributions to coevolve on a phylogenetic tree via an Ornstein-Uhlenbeck evolutionary process, allowing users to assess directionality between coevolving variables.",
   "name": "coevolve: Fit Bayesian Generalized Dynamic Phylogenetic Models using 'Stan'",
-  "relatedLink": "https://scottclaessens.github.io/coevolve/",
+  "relatedLink": "https://docs.ropensci.org/coevolve/articles/",
   "codeRepository": "https://github.com/ropensci/coevolve",
   "issueTracker": "https://github.com/ropensci/coevolve/issues",
   "license": "file LICENSE",

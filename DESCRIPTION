@@ -20,7 +20,7 @@ Description: Fit Bayesian generalized dynamic phylogenetic models
     acceleration via 'reticulate'.
 License: GPL (>= 3)
 Date: 2026-06-23
-URL: https://github.com/ropensci/coevolve, https://scottclaessens.github.io/coevolve/
+URL: https://github.com/ropensci/coevolve, https://docs.ropensci.org/coevolve
 BugReports: https://github.com/ropensci/coevolve/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "srr::srr_stats_roclet"))

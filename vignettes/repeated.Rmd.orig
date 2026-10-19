@@ -45,7 +45,7 @@ $\alpha$ to the model as follows:
 $$
 \begin{split}
 y_{i,j} &\sim f(\mu_{i,j}, \phi_j) \\
-g(\mu_{i,j}) &= \boldsymbol{\eta}_{i,j} + \alpha_{i,j} \\
+g(\mu_{i,j}) &= \pmb{\eta}_{i,j} + \alpha_{i,j} \\
 \alpha_{i,j} &\sim N(0, \Sigma)
 \end{split}
 $$
@@ -53,7 +53,7 @@ $$
 where $y_{i,j}$ is the observed value for trait $j$ from taxa $i$, $f()$ is a
 likelihood function with expected value $\mu$ and possible additional parameters
 $\phi$, $g()$ is a link function converting the expected value to the latent
-continuous space of the evolutionary process, $\boldsymbol{\eta}_{i,j}$ is
+continuous space of the evolutionary process, $\pmb{\eta}_{i,j}$ is
 the latent trait value of trait $j$ for taxa $i$, $\alpha_{i,j}$ is the
 taxon-level varying intercept for trait $j$ for taxa $i$, and $\Sigma$ is a
 $j$ x $j$ variance-covariance matrix for the varying intercepts. The varying

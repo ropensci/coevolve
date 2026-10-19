@@ -65,8 +65,10 @@ The following observation-level measurement model then links $\pmb{\eta}$ to
 the observations at the tips of the tree:
 
 $$
+\begin{split}
 y_{[n,j]} \sim f(\mu_{[n,j]}, {\phi}_{[j]}) \\
 g(\mu_{[n,j]}) = \pmb{\eta}_{[n]}
+\end{split}
 $$
 
 $y_{[n,j]}$ denotes the observed value for trait $j$ from species or population

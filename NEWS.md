@@ -1,3 +1,9 @@
+# coevolve - development version
+
+### Other Changes
+
+* Completed rOpenSci package review and transferred repository to rOpenSci
+
 # coevolve 1.2.1
 
 ### New Features

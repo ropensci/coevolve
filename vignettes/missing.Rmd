@@ -29,18 +29,18 @@ The observational model for generalized dynamic phylogenetic models is:
 $$
 \begin{split}
 y_{i,j} &\sim f(\mu_{i,j}, \phi_j) \\
-g(\mu_{i,j}) &= \boldsymbol{\eta}_{i,j}
+g(\mu_{i,j}) &= \pmb{\eta}_{i,j}
 \end{split}
 $$
 
 where $y_{i,j}$ is the observed value for trait $j$ from taxa $i$, $f()$ is a
 likelihood function with expected value $\mu$ and possible additional parameters
 $\phi$, $g()$ is a link function converting the expected value to the latent
-continuous space of the evolutionary process, and $\boldsymbol{\eta}_{i,j}$ is
+continuous space of the evolutionary process, and $\pmb{\eta}_{i,j}$ is
 the latent trait value of trait $j$ for taxa $i$.
 
 When data are missing for $y_{i,j}$, the model will use Bayesian imputation. It
-will continue to estimate $\boldsymbol{\eta}_{i,j}$ using information about
+will continue to estimate $\pmb{\eta}_{i,j}$ using information about
 phylogenetic relatedness and observed trait covariation. This is preferred as
 the model will use all available information in its inferences, rather than
 throw away information by deleting taxa with missing data.

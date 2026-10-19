@@ -1,8 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="man/figures/logo.png" width="120" alt="coevolve Logo"/>[<img src="https://raw.githubusercontent.com/stan-dev/logos/master/logo_tm.png" align="right" width="120" alt="Stan Logo"/>](https://mc-stan.org/)
-
 # coevolve
 
 <!-- badges: start -->
@@ -12,8 +10,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/coevolve/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/ropensci/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ScottClaessens/coevolve)
-[![lint](https://github.com/ropensci/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ScottClaessens/coevolve/actions?query=workflow%3Alint)
+coverage](https://codecov.io/gh/ropensci/coevolve/graph/badge.svg)](https://app.codecov.io/gh/ropensci/coevolve)
+[![lint](https://github.com/ropensci/coevolve/actions/workflows/lint.yaml/badge.svg)](https://github.com/ropensci/coevolve/actions?query=workflow%3Alint)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/717_status.svg)](https://github.com/ropensci/software-review/issues/717)
 <!-- badges: end -->
@@ -193,7 +191,7 @@ evolutionary time.
 ## Further resources
 
 - [Introductory
-  vignettes](https://scottclaessens.github.io/coevolve/articles/)
+  vignettes](https://docs.ropensci.org/coevolve/articles/)
 - [Methods paper](https://doi.org/10.1111/2041-210x.70303)
 - [Lecture and R workshop](https://www.youtube.com/watch?v=9dsTeVflA1s)
 

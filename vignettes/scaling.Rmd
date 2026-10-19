@@ -55,7 +55,7 @@ traits.
 While Stan is the default backend for `coev_fit()` models, users can also try
 the JAX backend, which may reduce computation times for certain models. For
 more details, see the
-[JAX vignette](https://scottclaessens.github.io/coevolve/articles/jax.html).
+[JAX vignette](https://docs.ropensci.org/coevolve/articles/jax.html).
 
 ## References
 
