@@ -49,14 +49,14 @@ variables
 
 We can then calculate the equilibrium values for the free variables:
 
-\deqn{\boldsymbol{\theta_f} = -\mathbf{A}_{ff}^{-1} \left( \mathbf{A}_{fh}
+\deqn{\pmb{\theta_f} = -\mathbf{A}_{ff}^{-1} \left( \mathbf{A}_{fh}
   \mathbf{\eta}_h + \mathbf{b}_f \right)}
 
 With the overall equilibrium vector being a mix of the free equilibria and
 the held values:
 
-\deqn{\boldsymbol{\theta | \mathbf{\eta}_h} = \begin{bmatrix}
-  \boldsymbol{\theta}_f \\\mathbf{\eta}_h\end{bmatrix}}
+\deqn{\pmb{\theta | \mathbf{\eta}_h} = \begin{bmatrix}
+  \pmb{\theta}_f \\\mathbf{\eta}_h\end{bmatrix}}
 }
 \examples{
 \dontrun{
