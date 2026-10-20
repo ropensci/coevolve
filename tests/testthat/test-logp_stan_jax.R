@@ -25,7 +25,8 @@ expect_logp_agreement <- function(..., grad_tol = 1e-4,
                                   seed = 1L) {
   result <- coevolve:::compare_stan_jax_logprob(
     ..., log_lik = !is.null(log_lik_tol),
-    n_points = 3L, seed = seed, grad_tol = grad_tol
+    n_points = 3L, seed = seed, grad_tol = grad_tol,
+    offset_sd_tol = offset_sd_tol
   )
   testthat::expect_lt(
     result$offset_sd, offset_sd_tol,

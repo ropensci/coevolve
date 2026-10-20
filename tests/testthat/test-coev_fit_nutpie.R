@@ -423,17 +423,21 @@ test_that("Plotting functions work with JAX fit", {
     iter_sampling = 50,
     seed = 1
   )
-  expect_no_error(coev_plot_trait_values(fit))
-  expect_no_error(coev_plot_delta_theta(fit))
-  expect_no_error(coev_plot_pred_series(fit))
+  expect_no_error(suppressWarnings(coev_plot_trait_values(fit)))
+  expect_no_error(suppressWarnings(coev_plot_delta_theta(fit)))
+  expect_no_error(suppressWarnings(coev_plot_pred_series(fit)))
   expect_no_error(
-    coev_plot_flowfield(
-      fit, var1 = "political_authority", var2 = "religious_authority"
+    suppressWarnings(
+      coev_plot_flowfield(
+        fit, var1 = "political_authority", var2 = "religious_authority"
+      )
     )
   )
   expect_no_error(
-    coev_plot_selection_gradient(
-      fit, var1 = "political_authority", var2 = "religious_authority"
+    suppressWarnings(
+      coev_plot_selection_gradient(
+        fit, var1 = "political_authority", var2 = "religious_authority"
+      )
     )
   )
 })

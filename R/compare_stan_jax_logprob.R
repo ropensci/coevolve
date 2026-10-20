@@ -29,7 +29,8 @@ compare_stan_jax_logprob <- function(
   log_lik = FALSE,
   seed = 1L,
   n_points = 5L,
-  grad_tol = 1e-6) {
+  grad_tol = 1e-6,
+  offset_sd_tol = 1e-6) {
 
   if (!requireNamespace("cmdstanr", quietly = TRUE)) {
     stop2("Package 'cmdstanr' is required.")
@@ -151,9 +152,9 @@ _grad_np = np.array(g)
   offset_sd <- if (n_points > 1) sd(offsets) else 0
   max_grad_diff <- max(max_grad_diffs)
 
-  if (offset_sd > 1e-6) {
+  if (offset_sd > offset_sd_tol) {
     warning2(
-      "logp offset is NOT constant (sd = ",
+      "logp offset exceeds tolerance (sd = ",
       format(offset_sd, digits = 4),
       "). Stan and JAX log-densities disagree."
     )
