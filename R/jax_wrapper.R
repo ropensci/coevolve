@@ -195,4 +195,3 @@ draws <- function(x, ...) {
 metadata <- function(x) {
   UseMethod("metadata")
 }
-
