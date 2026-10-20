@@ -23,7 +23,7 @@
 #' Aki Vehtari, Andrew Gelman, Daniel Simpson, Bob Carpenter, and
 #' Paul-Christian Bürkner (2020). Rank-normalization, folding, and
 #' localization: An improved R-hat for assessing convergence of
-#' MCMC. *Bayesian Analysis*. 1–28. dpi:10.1214/20-BA1221
+#' MCMC. *Bayesian Analysis*. 1–28. doi:10.1214/20-BA1221
 #'
 #' @examples
 #' \dontrun{

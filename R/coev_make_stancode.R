@@ -107,8 +107,8 @@
 #'   variables are left unscaled for model fitting. In this case, users should
 #'   take care to set sensible priors on variables.
 #' @param estimate_correlated_drift Logical. If \code{TRUE} (default), the model
-#'   estimates the off-diagonals for the \deqn{Q} drift matrix (i.e., correlated
-#'   drift). If \code{FALSE}, the off-diagonals for the \deqn{Q} drift matrix
+#'   estimates the off-diagonals for the \eqn{Q} drift matrix (i.e., correlated
+#'   drift). If \code{FALSE}, the off-diagonals for the \eqn{Q} drift matrix
 #'   are set to zero.
 #' @param estimate_residual Logical. If \code{TRUE} (default), the model
 #'   estimates residual standard deviations and residual correlations when there
