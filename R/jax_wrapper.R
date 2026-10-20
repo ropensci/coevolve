@@ -168,3 +168,31 @@ metadata.jax_fit <- function(x) {
     seed = x$seed
   )
 }
+
+#' Generic method for extracting draws
+#'
+#' @description Generic function for extracting draws from fit objects.
+#'
+#' @param x A fit object.
+#' @param ... Additional arguments passed to methods.
+#'
+#' @returns A draws_array object.
+#'
+#' @noRd
+draws <- function(x, ...) {
+  UseMethod("draws")
+}
+
+#' Generic method for extracting metadata
+#'
+#' @description Generic function for extracting metadata from fit objects.
+#'
+#' @param x A fit object.
+#'
+#' @returns A list containing metadata.
+#'
+#' @noRd
+metadata <- function(x) {
+  UseMethod("metadata")
+}
+

@@ -48,11 +48,8 @@ reference:
 - title: Internal S3 methods
   contents:
   - '`draws.jax_fit`'
-  - '`draws.nutpie_fit`'
   - '`metadata.jax_fit`'
-  - '`metadata.nutpie_fit`'
   - '`summary.jax_fit`'
-  - '`summary.nutpie_fit`'
 articles:
 - title: All vignettes
   contents:
