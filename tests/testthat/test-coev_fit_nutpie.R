@@ -146,6 +146,14 @@ test_that("coev_fit with nuts_sampler='nutpie' returns coevfit", {
   expect_true(!is.null(fit$stan_data))
   expect_equal(fit$nuts_sampler, "nutpie")
   expect_equal(fit$backend, "nutpie")
+  expect_error(
+    stancode(fit),
+    paste0(
+      "No Stan code available. This model was fitted with the nutpie backend ",
+      "(JAX). Use coev_make_stancode() to generate equivalent Stan code."
+    ),
+    fixed = TRUE
+  )
 })
 
 test_that("jax_fit class is set on fit$fit", {
