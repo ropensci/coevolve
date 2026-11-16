@@ -1,4 +1,13 @@
-# coevolve - development version
+# coevolve - 1.3.0
+
+### New Features
+
+* Added `scale_trees` argument to `coev_fit()`. This argument allows users to 
+toggle tree scaling on or off. By default, phylogenetic trees are scaled by the
+maximum root age across trees, preserving time scales across samples of trees.
+If turned off, phylogenetic trees are not scaled. For backwards compatibility,
+models with individual trees should remain unchanged, but models with samples of
+trees may return different results due to different data preparation (#127)
 
 ### Other Changes
 
