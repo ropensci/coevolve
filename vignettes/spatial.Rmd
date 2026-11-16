@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Controlling for spatial locations}
@@ -85,14 +85,14 @@ fit <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 4 finished in 663.9 seconds.
-Chain 3 finished in 666.8 seconds.
-Chain 1 finished in 937.3 seconds.
-Chain 2 finished in 948.6 seconds.
+Chain 3 finished in 667.9 seconds.
+Chain 4 finished in 672.6 seconds.
+Chain 1 finished in 932.2 seconds.
+Chain 2 finished in 948.0 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 804.1 seconds.
-Total execution time: 948.8 seconds.
+Mean chain execution time: 805.2 seconds.
+Total execution time: 948.2 seconds.
 ```
 
 
@@ -147,8 +147,7 @@ sdgp(religious_authority)     2.37      0.79 1.04  4.19 1.00     2136     2029
 ```
 
 ```
-Warning: There were 13 divergent transitions after warmup.
-http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+Warning: There were 13 divergent transitions after warmup. http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 ```
 
 The summary output shows that the model has estimated the parameters for two

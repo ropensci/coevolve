@@ -14,7 +14,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE}
-options(width = 120)
+options(width = 300)
 knitr::opts_chunk$set(
   comment = NA,
   fig.path = "vignettes/",
@@ -30,9 +30,9 @@ library(pander)
 
 ## Introduction
 
-Often, we would like to average our analysis over a posterior set of
-phylogenetic trees, rather than use a single tree. This can be a useful way to
-account for phylogenetic uncertainty in our inferences.
+Often, we would like to average our analysis over a sample of phylogenetic
+trees, rather than use a single tree. This can be a useful way to account for
+phylogenetic uncertainty in our inferences.
 
 To deal with phylogenetic uncertainty, the `coev_fit()` function allows the user
 to declare multiPhylo objects in the `tree` argument. So long as all trees in
@@ -90,7 +90,22 @@ summary(fit)
 
 The summary output correctly shows that we averaged over five trees.
 
-Note that with more trees, users should expect the computation time for these
-models to increase. If models are taking too long to fit with `cmdstanr`, users
-could try fitting the model with `nuts_sampler = "nutpie"`, as this approach
-parallelises over trees more efficiently than Stan.
+## Tree scaling
+
+By default, the `scale_trees` argument for `coev_fit()` is set to `TRUE`. This
+means that branch lengths are scaled by the maximum root age across all trees.
+In other words, the tree with the oldest root age will be scaled to have a root
+age of 1, and all other trees will be scaled by the same amount. This preserves
+the same time scale across samples of trees while helping the model to sample
+more efficiently.
+
+If users would prefer to use the unscaled phylogenetic trees, they can set
+`scale_trees = FALSE`. We advise that users take care to set sensible priors
+when using unscaled phylogenetic trees.
+
+## Computation time
+
+With more trees, users should expect the computation time for these models to
+increase. If models are taking too long to fit with `cmdstanr`, users could try
+fitting the model with `nuts_sampler = "nutpie"`, as this approach parallelises
+over trees more efficiently than Stan.

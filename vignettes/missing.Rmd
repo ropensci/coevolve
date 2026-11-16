@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Handling missing data}
@@ -103,14 +103,14 @@ fit <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 4 finished in 209.4 seconds.
-Chain 3 finished in 280.6 seconds.
-Chain 1 finished in 297.8 seconds.
-Chain 2 finished in 307.8 seconds.
+Chain 4 finished in 208.6 seconds.
+Chain 3 finished in 278.6 seconds.
+Chain 1 finished in 296.5 seconds.
+Chain 2 finished in 307.1 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 273.9 seconds.
-Total execution time: 308.0 seconds.
+Mean chain execution time: 272.7 seconds.
+Total execution time: 307.3 seconds.
 ```
 
 
@@ -154,8 +154,7 @@ group_size       6.37     16.01 1.42  31.16 1.00      903      715
 ```
 
 ```
-Warning: There were 178 divergent transitions after warmup.
-http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+Warning: There were 178 divergent transitions after warmup. http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 ```
 
 Notice that the number of observations is still 21 in the summary output,

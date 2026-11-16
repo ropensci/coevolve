@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Erik Ringen"
 vignette: >
   %\VignetteIndexEntry{Ancestral state reconstruction}
@@ -59,6 +59,7 @@ fit <- coev_fit(
   chains = 4,
   iter_sampling = 500,
   iter_warmup = 500,
+  refresh = 0,
   seed = 42
 )
 ```
@@ -66,62 +67,14 @@ fit <- coev_fit(
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 1 Iteration:   1 / 1000 [  0%]  (Warmup) 
-Chain 2 Iteration:   1 / 1000 [  0%]  (Warmup) 
-Chain 3 Iteration:   1 / 1000 [  0%]  (Warmup) 
-Chain 4 Iteration:   1 / 1000 [  0%]  (Warmup) 
-Chain 1 Iteration: 100 / 1000 [ 10%]  (Warmup) 
-Chain 3 Iteration: 100 / 1000 [ 10%]  (Warmup) 
-Chain 2 Iteration: 100 / 1000 [ 10%]  (Warmup) 
-Chain 4 Iteration: 100 / 1000 [ 10%]  (Warmup) 
-Chain 1 Iteration: 200 / 1000 [ 20%]  (Warmup) 
-Chain 2 Iteration: 200 / 1000 [ 20%]  (Warmup) 
-Chain 3 Iteration: 200 / 1000 [ 20%]  (Warmup) 
-Chain 4 Iteration: 200 / 1000 [ 20%]  (Warmup) 
-Chain 3 Iteration: 300 / 1000 [ 30%]  (Warmup) 
-Chain 1 Iteration: 300 / 1000 [ 30%]  (Warmup) 
-Chain 2 Iteration: 300 / 1000 [ 30%]  (Warmup) 
-Chain 4 Iteration: 300 / 1000 [ 30%]  (Warmup) 
-Chain 3 Iteration: 400 / 1000 [ 40%]  (Warmup) 
-Chain 1 Iteration: 400 / 1000 [ 40%]  (Warmup) 
-Chain 2 Iteration: 400 / 1000 [ 40%]  (Warmup) 
-Chain 4 Iteration: 400 / 1000 [ 40%]  (Warmup) 
-Chain 3 Iteration: 500 / 1000 [ 50%]  (Warmup) 
-Chain 3 Iteration: 501 / 1000 [ 50%]  (Sampling) 
-Chain 1 Iteration: 500 / 1000 [ 50%]  (Warmup) 
-Chain 1 Iteration: 501 / 1000 [ 50%]  (Sampling) 
-Chain 4 Iteration: 500 / 1000 [ 50%]  (Warmup) 
-Chain 4 Iteration: 501 / 1000 [ 50%]  (Sampling) 
-Chain 2 Iteration: 500 / 1000 [ 50%]  (Warmup) 
-Chain 2 Iteration: 501 / 1000 [ 50%]  (Sampling) 
-Chain 3 Iteration: 600 / 1000 [ 60%]  (Sampling) 
-Chain 1 Iteration: 600 / 1000 [ 60%]  (Sampling) 
-Chain 4 Iteration: 600 / 1000 [ 60%]  (Sampling) 
-Chain 2 Iteration: 600 / 1000 [ 60%]  (Sampling) 
-Chain 3 Iteration: 700 / 1000 [ 70%]  (Sampling) 
-Chain 1 Iteration: 700 / 1000 [ 70%]  (Sampling) 
-Chain 4 Iteration: 700 / 1000 [ 70%]  (Sampling) 
-Chain 2 Iteration: 700 / 1000 [ 70%]  (Sampling) 
-Chain 3 Iteration: 800 / 1000 [ 80%]  (Sampling) 
-Chain 1 Iteration: 800 / 1000 [ 80%]  (Sampling) 
-Chain 4 Iteration: 800 / 1000 [ 80%]  (Sampling) 
-Chain 2 Iteration: 800 / 1000 [ 80%]  (Sampling) 
-Chain 3 Iteration: 900 / 1000 [ 90%]  (Sampling) 
-Chain 1 Iteration: 900 / 1000 [ 90%]  (Sampling) 
-Chain 4 Iteration: 900 / 1000 [ 90%]  (Sampling) 
-Chain 2 Iteration: 900 / 1000 [ 90%]  (Sampling) 
-Chain 3 Iteration: 1000 / 1000 [100%]  (Sampling) 
-Chain 3 finished in 108.7 seconds.
-Chain 1 Iteration: 1000 / 1000 [100%]  (Sampling) 
-Chain 1 finished in 111.1 seconds.
-Chain 4 Iteration: 1000 / 1000 [100%]  (Sampling) 
-Chain 4 finished in 114.8 seconds.
-Chain 2 Iteration: 1000 / 1000 [100%]  (Sampling) 
-Chain 2 finished in 117.7 seconds.
+Chain 3 finished in 109.4 seconds.
+Chain 1 finished in 111.3 seconds.
+Chain 4 finished in 115.4 seconds.
+Chain 2 finished in 117.4 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 113.1 seconds.
-Total execution time: 117.9 seconds.
+Mean chain execution time: 113.4 seconds.
+Total execution time: 117.5 seconds.
 ```
 
 Quick check that the model sampled adequately:
@@ -279,13 +232,6 @@ ggplot(asr_wide,
     y = "Religious authority (latent)",
     title = "Ancestral states at internal nodes"
   )
-```
-
-```
-Warning: `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
-ℹ Please use the `orientation` argument of `geom_errorbar()` instead.
-This warning is displayed once per session.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ```
