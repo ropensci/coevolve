@@ -10,15 +10,16 @@ coev_make_model_config <- function(data, variables, id, tree,
                                    lon_lat = NULL, dist_k = NA,
                                    dist_cov = "exp_quad",
                                    measurement_error = NULL,
-                                   prior = NULL, scale = TRUE,
+                                   prior = NULL, scale_variables = TRUE,
+                                   scale_trees = TRUE,
                                    estimate_correlated_drift = TRUE,
                                    estimate_residual = TRUE,
                                    log_lik = FALSE,
                                    prior_only = FALSE) {
 
   run_checks(data, variables, id, tree, effects_mat, complete_cases, lon_lat,
-             dist_k, dist_cov, measurement_error, prior, scale,
-             estimate_correlated_drift, estimate_residual,
+             dist_k, dist_cov, measurement_error, prior, scale_variables,
+             scale_trees, estimate_correlated_drift, estimate_residual,
              log_lik = log_lik, prior_only = prior_only)
 
   data <- as.data.frame(data)

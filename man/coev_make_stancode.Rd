@@ -16,7 +16,8 @@ coev_make_stancode(
   dist_cov = "exp_quad",
   measurement_error = NULL,
   prior = NULL,
-  scale = TRUE,
+  scale_variables = TRUE,
+  scale_trees = TRUE,
   estimate_correlated_drift = TRUE,
   estimate_residual = TRUE,
   log_lik = FALSE,
@@ -112,16 +113,24 @@ These must be entered with valid prior strings, e.g.
 an error when the function internally checks the syntax of resulting Stan
 code.}
 
-\item{scale}{Logical. If \code{TRUE} (default), variables following the
-\code{normal} and \code{gamma_log} response distributions are scaled before
-fitting the model. Continuous variables following the \code{normal}
+\item{scale_variables}{Logical. If \code{TRUE} (default), variables following
+the \code{normal} and \code{gamma_log} response distributions are scaled
+before fitting the model. Continuous variables following the \code{normal}
 distribution are standardised (e.g., mean centered and divided by their
 standard deviation) and positive real variables following the
 \code{gamma_log} distribution are divided by the mean value without
 centering. This approach is recommended when using default priors to
 improve efficiency and ensure accurate inferences. If \code{FALSE},
 variables are left unscaled for model fitting. In this case, users should
-take care to set sensible priors on variables.}
+take care to set sensible priors.}
+
+\item{scale_trees}{Logical. If \code{TRUE} (default), phylogenetic
+trees are scaled by the maximum root age across all trees before fitting
+the model. All trees are scaled by the same amount to preserve the same
+time scale across trees. This approach is recommended when using default
+priors to improve efficiency. If \code{FALSE}, phylogenetic trees are left
+unscaled for model fitting. In this case, users should take care to set
+sensible priors.}
 
 \item{estimate_correlated_drift}{Logical. If \code{TRUE} (default), the model
 estimates the off-diagonals for the \eqn{Q} drift matrix (i.e., correlated

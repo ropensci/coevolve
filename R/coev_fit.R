@@ -119,16 +119,23 @@
 #'   \code{list(A_offdiag = "normal(0, 2)")}. Invalid prior strings will throw
 #'   an error when the function internally checks the syntax of resulting Stan
 #'   code.
-#' @param scale Logical. If \code{TRUE} (default), variables following the
-#'   \code{normal} and \code{gamma_log} response distributions are scaled before
-#'   fitting the model. Continuous variables following the \code{normal}
+#' @param scale_variables Logical. If \code{TRUE} (default), variables following
+#'   the \code{normal} and \code{gamma_log} response distributions are scaled
+#'   before fitting the model. Continuous variables following the \code{normal}
 #'   distribution are standardised (e.g., mean centered and divided by their
 #'   standard deviation) and positive real variables following the
 #'   \code{gamma_log} distribution are divided by the mean value without
 #'   centering. This approach is recommended when using default priors to
 #'   improve efficiency and ensure accurate inferences. If \code{FALSE},
 #'   variables are left unscaled for model fitting. In this case, users should
-#'   take care to set sensible priors on variables.
+#'   take care to set sensible priors.
+#' @param scale_trees Logical. If \code{TRUE} (default), phylogenetic
+#'   trees are scaled by the maximum root age across all trees before fitting
+#'   the model. All trees are scaled by the same amount to preserve the same
+#'   time scale across trees. This approach is recommended when using default
+#'   priors to improve efficiency. If \code{FALSE}, phylogenetic trees are left
+#'   unscaled for model fitting. In this case, users should take care to set
+#'   sensible priors.
 #' @param estimate_correlated_drift Logical. If \code{TRUE} (default), the model
 #'   estimates the off-diagonals for the \eqn{Q} drift matrix (i.e., correlated
 #'   drift). If \code{FALSE}, the off-diagonals for the \eqn{Q} drift matrix
@@ -291,7 +298,8 @@ coev_fit <- function(data, variables, id, tree,
                      effects_mat = NULL, complete_cases = FALSE,
                      lon_lat = NULL, dist_k = NA, dist_cov = "exp_quad",
                      measurement_error = NULL,
-                     prior = NULL, scale = TRUE,
+                     prior = NULL, scale_variables = TRUE,
+                     scale_trees = TRUE,
                      estimate_correlated_drift = TRUE,
                      estimate_residual = TRUE,
                      log_lik = FALSE, prior_only = FALSE,
@@ -304,7 +312,7 @@ coev_fit <- function(data, variables, id, tree,
   # check arguments
   run_checks( # nolint: object_usage_linter.
     data, variables, id, tree, effects_mat, complete_cases, lon_lat,
-    dist_k, dist_cov, measurement_error, prior, scale,
+    dist_k, dist_cov, measurement_error, prior, scale_variables, scale_trees,
     estimate_correlated_drift, estimate_residual, log_lik, prior_only,
     dist_mat, backend
   )
@@ -314,22 +322,22 @@ coev_fit <- function(data, variables, id, tree,
     model_cfg <- coev_make_model_config( # nolint: object_usage_linter.
       data, variables, id, tree, effects_mat,
       complete_cases, lon_lat, dist_k, dist_cov,
-      measurement_error, prior, scale,
-      estimate_correlated_drift, estimate_residual,
-      log_lik, prior_only
+      measurement_error, prior, scale_variables,
+      scale_trees, estimate_correlated_drift,
+      estimate_residual, log_lik, prior_only
     )
   } else {
     sc <- coev_make_stancode(data, variables, id, tree, effects_mat,
                              complete_cases, lon_lat, dist_k, dist_cov,
-                             measurement_error, prior, scale,
-                             estimate_correlated_drift, estimate_residual,
-                             log_lik, prior_only)
+                             measurement_error, prior, scale_variables,
+                             scale_trees, estimate_correlated_drift,
+                             estimate_residual, log_lik, prior_only)
   }
   sd <- coev_make_standata(data, variables, id, tree, effects_mat,
                            complete_cases, lon_lat, dist_k, dist_cov,
-                           measurement_error, prior, scale,
-                           estimate_correlated_drift, estimate_residual,
-                           log_lik, prior_only)
+                           measurement_error, prior, scale_variables,
+                           scale_trees, estimate_correlated_drift,
+                           estimate_residual, log_lik, prior_only)
   # fit model using specified sampler
   if (nuts_sampler == "nutpie") {
     sample_args <- list(...)
@@ -495,7 +503,8 @@ coev_fit <- function(data, variables, id, tree,
       dist_k = dist_k,
       dist_cov = dist_cov,
       measurement_error = measurement_error,
-      scale = scale,
+      scale_variables = scale_variables,
+      scale_trees = scale_trees,
       estimate_correlated_drift = estimate_correlated_drift,
       estimate_residual = estimate_residual,
       prior_only = prior_only,
