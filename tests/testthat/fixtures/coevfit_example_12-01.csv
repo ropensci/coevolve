@@ -2,7 +2,7 @@
 # stan_version_minor = 40
 # stan_version_patch = 0
 # model = model_5116f408d7845e927134a4062e642c8f_model
-# start_datetime = 2026-10-06 19:31:08 UTC
+# start_datetime = 2026-11-16 13:02:04 UTC
 # method = sample (Default)
 #   sample
 #     num_samples = 50
@@ -31,16 +31,16 @@
 #     num_chains = 1 (Default)
 # id = 1 (Default)
 # data
-#   file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmprBLKrG/standata-8e01749a38db.json
+#   file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmpJoCOtI/standata-1ac737c81381.json
 # init = 2 (Default)
 # random
 #   seed = 12345
 # output
-#   file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmprBLKrG/model_5116f408d7845e927134a4062e642c8f-202610062031-01-91cad7.csv
+#   file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmpJoCOtI/model_5116f408d7845e927134a4062e642c8f-202611161302-01-91579d.csv
 #   diagnostic_file =  (Default)
 #   refresh = 100 (Default)
 #   sig_figs = 8 (Default)
-#   profile_file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmprBLKrG/model_5116f408d7845e927134a4062e642c8f-profile-202610062031-01-25a677.csv
+#   profile_file = /var/folders/1c/18978_5s35n79f0fw4_d2lyc0000gp/T/RtmpJoCOtI/model_5116f408d7845e927134a4062e642c8f-profile-202611161302-01-25333d.csv
 #   save_cmdstan_config = false (Default)
 # num_threads = 1 (Default)
 # stanc_version = stanc3 v2.40.0
@@ -101,7 +101,7 @@ lp__,accept_stat__,stepsize__,treedepth__,n_leapfrog__,divergent__,energy__,A_di
 -16.732299,0.9961371,0.11836443,5,31,0,27.712361,-1.0446118,1,2.3217825,0.73890025,-1.1712616,0.32866112,-0.37654404,-0.46636567,0.59192324,-0.43753314,-0.22392419,-0.77590313,-2.1452596,1.1402671,-0.57500335,1.8702445,-0.18382715,0.28840591,0.046397469,0.32343073,0.32343073,0.43611406,0.43611406,-1.1712616,0.42075453,0.39239586,0.27085665,-1.0446118,5.390674,2.5802285,2.2608395,0.58413352,0.58413352,0.66660951,0.66660951,-99,-99,-99,-99,1.5036088,0.76428628,0.76428628,0.81646158,0.81646158,1,1,1,1,-0.68633161,0.73807717,-1.0335864,0.3796439,-0.83250251,1
 -14.401039,0.99694513,0.11836443,5,31,0,22.301085,-1.2762834,1,1.6362431,0.0040600408,1.4751879,-1.2314558,0.10082252,0.34345417,-0.33771489,0.17583289,0.85882035,0.74703277,1.3760853,-1.2302254,1.0899539,-1.2166967,0.29305125,0.091701299,0.41397783,-0.50536545,-0.50536545,-0.56998912,-0.56998912,1.4751879,-0.69116896,-0.68480339,-0.59170081,-1.2762834,2.6772913,1.0488624,0.96717539,0.28235131,0.28235131,0.32086727,0.32086727,-99,-99,-99,-99,0.98345076,0.5313674,0.5313674,0.56645147,0.56645147,1,1,1,1,-0.058530896,-1.0460726,-1.0120827,-0.62484694,-0.31919557,1
 # 
-#  Elapsed Time: 0.082 seconds (Warm-up)
-#                0.045 seconds (Sampling)
-#                0.127 seconds (Total)
+#  Elapsed Time: 0.084 seconds (Warm-up)
+#                0.046 seconds (Sampling)
+#                0.13 seconds (Total)
 # 

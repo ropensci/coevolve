@@ -907,9 +907,23 @@ test_that("coev_make_stancode() produces expected errors", {
       ),
       id = "id",
       tree = tree,
-      scale = "testing"
+      scale_variables = "testing"
     ),
-    "Argument 'scale' must be a logical of length one.",
+    "Argument 'scale_variables' must be a logical of length one.",
+    fixed = TRUE
+  )
+  expect_error(
+    coev_make_stancode(
+      data = d,
+      variables = list(
+        x = "bernoulli_logit",
+        y = "ordered_logistic"
+      ),
+      id = "id",
+      tree = tree,
+      scale_trees = "testing"
+    ),
+    "Argument 'scale_trees' must be a logical of length one.",
     fixed = TRUE
   )
   expect_error(

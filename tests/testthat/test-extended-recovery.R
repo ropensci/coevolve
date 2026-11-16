@@ -81,7 +81,7 @@ for (seed in 1:2) {
             A_offdiag = "normal(0, 2)",
             Q_sigma = "normal(0, 2)"
           ),
-          scale = FALSE,
+          scale_variables = FALSE,
           chains = 1,
           refresh = 0,
           seed = seed,

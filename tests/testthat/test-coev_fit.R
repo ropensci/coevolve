@@ -822,9 +822,23 @@ test_that("coev_fit() produces expected errors", {
       ),
       id = "id",
       tree = tree,
-      scale = "testing"
+      scale_variables = "testing"
     ),
-    "Argument 'scale' must be a logical of length one.",
+    "Argument 'scale_variables' must be a logical of length one.",
+    fixed = TRUE
+  )
+  expect_error(
+    coev_fit(
+      data = d,
+      variables = list(
+        x = "bernoulli_logit",
+        y = "ordered_logistic"
+      ),
+      id = "id",
+      tree = tree,
+      scale_trees = "testing"
+    ),
+    "Argument 'scale_trees' must be a logical of length one.",
     fixed = TRUE
   )
   expect_error(
@@ -967,10 +981,10 @@ test_that("coev_fit() fits test fixtures", {
   m2 <- readRDS(test_path("fixtures", "coevfit_example_02.rds"))
   m3 <- readRDS(test_path("fixtures", "coevfit_example_03.rds"))
   m4 <- readRDS(test_path("fixtures", "coevfit_example_04.rds"))
-  m1 <- reload_fit(m1, filename = "coevfit_example_01-1.csv")
-  m2 <- reload_fit(m2, filename = "coevfit_example_02-1.csv")
-  m3 <- reload_fit(m3, filename = "coevfit_example_03-1.csv")
-  m4 <- reload_fit(m4, filename = "coevfit_example_04-1.csv")
+  m1 <- reload_fit(m1, filename = "coevfit_example_01-01.csv")
+  m2 <- reload_fit(m2, filename = "coevfit_example_02-01.csv")
+  m3 <- reload_fit(m3, filename = "coevfit_example_03-01.csv")
+  m4 <- reload_fit(m4, filename = "coevfit_example_04-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # expect no errors for model fitting or summaries
@@ -1067,7 +1081,7 @@ test_that("coev_fit() fits test fixtures", {
 test_that("effects_mat argument to coev_fit() works as expected", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_05.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_05-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_05-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # expect no errors for model fitting or summaries
@@ -1106,7 +1120,7 @@ test_that("effects_mat argument to coev_fit() works as expected", {
 test_that("coev_fit() works with missing data", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_06.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_06-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_06-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1127,7 +1141,7 @@ test_that("coev_fit() works with missing data", {
 test_that("coev_fit() works with repeated observations", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_07.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_07-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_07-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1145,7 +1159,7 @@ test_that("coev_fit() works with repeated observations", {
 test_that("coev_fit() works with multiPhylo object", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_08.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_08-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_08-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1163,7 +1177,7 @@ test_that("coev_fit() works with multiPhylo object", {
 test_that("coev_fit() works when Q off diagonals == 0", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_09.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_09-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_09-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1181,7 +1195,7 @@ test_that("coev_fit() works when Q off diagonals == 0", {
 test_that("coev_fit() works with measurement error", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_10.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_10-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_10-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1230,7 +1244,7 @@ test_that("coev_fit() works with cmdstanr backend and nutpie arguments", {
 test_that("coev_fit() works with approximate GPs", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_11.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_11-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_11-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
@@ -1251,7 +1265,28 @@ test_that("coev_fit() works with approximate GPs", {
 test_that("coev_fit() works with single traits", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_12.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_12-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_12-01.csv")
+  # suppress warnings
+  sw <- suppressWarnings
+  # fitted without error
+  expect_no_error(sw(m))
+  expect_no_error(sw(summary(m)))
+  expect_output(sw(print(m)))
+  expect_output(sw(print(summary(m))))
+  # expect no errors for extract_samples method
+  expect_no_error(sw(extract_samples(m)))
+  expect_true(sw(methods::is(extract_samples(m), "list")))
+  # expect no errors for stancode or standata methods
+  expect_no_error(sw(stancode(m)))
+  expect_no_error(sw(standata(m)))
+  expect_output(sw(stancode(m)))
+  expect_true(sw(methods::is(standata(m), "list")))
+})
+
+test_that("coev_fit() works with unscaled trees", {
+  # load model
+  m <- readRDS(test_path("fixtures", "coevfit_example_13.rds"))
+  m <- reload_fit(m, filename = "coevfit_example_13-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # fitted without error
