@@ -62,7 +62,7 @@ paper [here](https://doi.org/10.1111/2041-210x.70303).
 You can install the **coevolve** package with:
 
 ``` r
-install.packages("coevolve", repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages("coevolve", repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## How to use coevolve
@@ -98,14 +98,14 @@ fit <-
   )
 #> Running MCMC with 4 parallel chains...
 #> 
-#> Chain 4 finished in 282.2 seconds.
-#> Chain 1 finished in 301.3 seconds.
-#> Chain 3 finished in 372.3 seconds.
-#> Chain 2 finished in 397.0 seconds.
+#> Chain 4 finished in 320.1 seconds.
+#> Chain 1 finished in 329.9 seconds.
+#> Chain 3 finished in 416.5 seconds.
+#> Chain 2 finished in 428.4 seconds.
 #> 
 #> All 4 chains finished successfully.
-#> Mean chain execution time: 338.2 seconds.
-#> Total execution time: 397.1 seconds.
+#> Mean chain execution time: 373.7 seconds.
+#> Total execution time: 428.5 seconds.
 #> Warning: 10 of 4000 (0.0%) transitions ended with a divergence.
 #> See https://mc-stan.org/misc/warnings for details.
 ```
@@ -190,8 +190,7 @@ evolutionary time.
 
 ## Further resources
 
-- [Introductory
-  vignettes](https://docs.ropensci.org/coevolve/articles/)
+- [Introductory vignettes](https://docs.ropensci.org/coevolve/articles/)
 - [Methods paper](https://doi.org/10.1111/2041-210x.70303)
 - [Lecture and R workshop](https://www.youtube.com/watch?v=9dsTeVflA1s)
 

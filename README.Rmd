@@ -86,7 +86,7 @@ For more information about the model, refer to the introductory methods paper
 You can install the **coevolve** package with:
 
 ```{r install_coevolve, eval = FALSE}
-install.packages("coevolve", repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages("coevolve", repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## How to use coevolve
