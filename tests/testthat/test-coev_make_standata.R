@@ -822,9 +822,23 @@ test_that("coev_make_standata() produces expected errors", {
       ),
       id = "id",
       tree = tree,
-      scale = "testing"
+      scale_variables = "testing"
     ),
-    "Argument 'scale' must be a logical of length one.",
+    "Argument 'scale_variables' must be a logical of length one.",
+    fixed = TRUE
+  )
+  expect_error(
+    coev_make_stancode(
+      data = d,
+      variables = list(
+        x = "bernoulli_logit",
+        y = "ordered_logistic"
+      ),
+      id = "id",
+      tree = tree,
+      scale_trees = "testing"
+    ),
+    "Argument 'scale_trees' must be a logical of length one.",
     fixed = TRUE
   )
   expect_error(
@@ -1148,7 +1162,7 @@ test_that("coev_make_stancode() scales data correctly", {
       z = rlnorm(n, 1, 1.5)
     )
   })
-  # check stan data is the same as real data when scale is FALSE
+  # check stan data is the same as real data when scale_variables is FALSE
   expect_warning(
     {sd1 <-
       coev_make_standata(
@@ -1159,17 +1173,17 @@ test_that("coev_make_stancode() scales data correctly", {
         ),
         id = "id",
         tree = tree,
-        scale = FALSE
+        scale_variables = FALSE
       )},
     paste0(
-      "When scale is FALSE, continuous variables are left unstandardised in ",
-      "the Stan data list. Users should take care to set sensible priors ",
-      "for model fitting, rather than use default priors."
+      "When scale_variables is FALSE, continuous variables are left ",
+      "unstandardised in the Stan data list. Users should take care to set ",
+      "sensible priors for model fitting, rather than use default priors."
     )
   )
   expect_identical(sd1$y[, "w"], as.numeric(d$w))
   expect_identical(sd1$y[, "x"], as.numeric(d$x))
-  # check stan data is correctly standardised when scale = TRUE
+  # check stan data is correctly standardised when scale_variables = TRUE
   expect_no_warning(
     {
       sd2 <-
@@ -1181,7 +1195,7 @@ test_that("coev_make_stancode() scales data correctly", {
           ),
           id = "id",
           tree = tree,
-          scale = TRUE
+          scale_variables = TRUE
         )
     }
   )
@@ -1270,7 +1284,7 @@ test_that("coev_make_standata() works with measurement error", {
       y_se = rexp(20, 5)
     )
   })
-  # make stan data with measurement error when scale = TRUE
+  # make stan data with measurement error when scale_variables is TRUE
   sd1 <-
     coev_make_standata(
       data = d,
@@ -1286,7 +1300,7 @@ test_that("coev_make_standata() works with measurement error", {
         y = "y_se"
       )
     )
-  # make stan data with measurement error when scale is FALSE
+  # make stan data with measurement error when scale_variables is FALSE
   sd2 <-
     suppressWarnings(
       coev_make_standata(
@@ -1302,7 +1316,7 @@ test_that("coev_make_standata() works with measurement error", {
           x = "x_se",
           y = "y_se"
         ),
-        scale = FALSE
+        scale_variables = FALSE
       )
     )
   # check squared standard errors are scaled correctly in stan data
@@ -1486,4 +1500,72 @@ test_that("coev_make_standata() works with single traits", {
   expect_equal(sdata$J, 1)
   expect_equal(sdata$effects_mat, matrix(1, dimnames = list("x", "x")))
   expect_equal(sdata$num_effects, 1)
+})
+
+test_that("coev_make_standata() scales trees correctly", {
+  # simulate data
+  withr::with_seed(1, {
+    n <- 20
+    tree <- lapply(1:10, function(x) ape::rcoal(n))
+    class(tree) <- "multiPhylo"
+    d <- data.frame(
+      id = tree[[1]]$tip.label,
+      x = rnorm(n),
+      y = rnorm(n)
+    )
+  })
+  # create stan data with tree scaling turned on
+  expect_no_error({
+    sdata_scaled <- coev_make_standata(
+      data = d,
+      variables = list(x = "normal", y = "normal"),
+      id = "id",
+      tree = tree,
+      scale_trees = TRUE
+    )
+  })
+  # create stan data with tree scaling turned off
+  expect_no_error({
+    sdata_unscaled <- suppressWarnings(
+      coev_make_standata(
+        data = d,
+        variables = list(x = "normal", y = "normal"),
+        id = "id",
+        tree = tree,
+        scale_trees = FALSE
+      )
+    )
+  })
+  # function to check branch lengths
+  check_branch_lengths <- function(sdata, tree, scale_trees) {
+    # get maximum root age
+    max_depth <- max(unlist(lapply(tree, \(x) ape::node.depth.edgelength(x))))
+    # output matrix
+    out <- matrix(NA, nrow = sdata$N_tree, ncol = sdata$N_seg - 1)
+    # check all branches
+    for (i in seq_along(tree)) {
+      times <- ape::node.depth.edgelength(tree[[i]])
+      ts <- sdata$ts[i, ]
+      node_seq <- sdata$node_seq[i, ]
+      parent <- sdata$parent[i, ]
+      for (j in 2:length(parent)) {
+        parent_time <- times[node_seq[j]] - times[parent[j]]
+        if (scale_trees) {
+          parent_time <- parent_time / max_depth
+        }
+        # identical within rounding error?
+        out[i, j - 1] <- identical(round(ts[j], 3), round(parent_time, 3))
+      }
+    }
+    # return
+    out
+  }
+  # expectations
+  expect_true(
+    all(check_branch_lengths(sdata_scaled, tree, scale_trees = TRUE))
+  )
+  expect_true(
+    all(check_branch_lengths(sdata_unscaled, tree, scale_trees = FALSE))
+  )
+
 })

@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Introduction to the coevolve package}
@@ -140,14 +140,14 @@ fit <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 2 finished in 743.5 seconds.
-Chain 4 finished in 746.2 seconds.
-Chain 1 finished in 746.7 seconds.
-Chain 3 finished in 798.7 seconds.
+Chain 1 finished in 747.1 seconds.
+Chain 2 finished in 767.0 seconds.
+Chain 4 finished in 769.3 seconds.
+Chain 3 finished in 780.3 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 758.8 seconds.
-Total execution time: 798.9 seconds.
+Mean chain execution time: 765.9 seconds.
+Total execution time: 780.4 seconds.
 ```
 
 The function takes several arguments, including a dataset, a named list of
@@ -206,8 +206,7 @@ religious_authority[3]     1.58      0.93 -0.18  3.44 1.00     8707     6508
 ```
 
 ```
-Warning: There were 4 divergent transitions after warmup.
-http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+Warning: There were 4 divergent transitions after warmup. http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 ```
 
 We can see a printed summary of the model parameters, including the

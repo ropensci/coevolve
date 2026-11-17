@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Model comparison}
@@ -59,14 +59,14 @@ fit_dependent <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 2 finished in 438.8 seconds.
-Chain 4 finished in 439.9 seconds.
-Chain 3 finished in 440.3 seconds.
-Chain 1 finished in 459.9 seconds.
+Chain 3 finished in 432.3 seconds.
+Chain 2 finished in 443.0 seconds.
+Chain 4 finished in 446.8 seconds.
+Chain 1 finished in 447.8 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 444.7 seconds.
-Total execution time: 460.1 seconds.
+Mean chain execution time: 442.5 seconds.
+Total execution time: 448.0 seconds.
 ```
 
 Second, we fit an "independent" model where the two traits evolve independently.
@@ -124,14 +124,14 @@ fit_independent <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 2 finished in 181.1 seconds.
-Chain 1 finished in 196.7 seconds.
-Chain 3 finished in 203.4 seconds.
-Chain 4 finished in 208.4 seconds.
+Chain 2 finished in 180.3 seconds.
+Chain 1 finished in 197.3 seconds.
+Chain 3 finished in 202.8 seconds.
+Chain 4 finished in 206.7 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 197.4 seconds.
-Total execution time: 208.7 seconds.
+Mean chain execution time: 196.8 seconds.
+Total execution time: 206.9 seconds.
 ```
 
 Once we have fitted both models, we can use the `loo_compare()` function from

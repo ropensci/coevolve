@@ -609,8 +609,8 @@ run_checks_prior <- function(prior) {
 #' @noRd
 run_checks <- function(data, variables, id, tree, effects_mat, complete_cases,
                        lon_lat, dist_k, dist_cov, measurement_error, prior,
-                       scale, estimate_correlated_drift, estimate_residual,
-                       log_lik, prior_only, dist_mat,
+                       scale_variables, scale_trees, estimate_correlated_drift,
+                       estimate_residual, log_lik, prior_only, dist_mat,
                        backend = deprecated()) {
   # run checks from previous functions
   run_checks_data(data)
@@ -628,8 +628,11 @@ run_checks <- function(data, variables, id, tree, effects_mat, complete_cases,
   if (!is.logical(complete_cases) || length(complete_cases) != 1) {
     stop2("Argument 'complete_cases' must be a logical of length one.")
   }
-  if (!is.logical(scale) || length(scale) != 1) {
-    stop2("Argument 'scale' must be a logical of length one.")
+  if (!is.logical(scale_variables) || length(scale_variables) != 1) {
+    stop2("Argument 'scale_variables' must be a logical of length one.")
+  }
+  if (!is.logical(scale_trees) || length(scale_trees) != 1) {
+    stop2("Argument 'scale_trees' must be a logical of length one.")
   }
   if (!is.logical(estimate_correlated_drift) ||
         length(estimate_correlated_drift) != 1) {

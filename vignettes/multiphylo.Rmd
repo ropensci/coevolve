@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Averaging over samples of trees}
@@ -17,9 +17,9 @@ vignette: >
 
 ## Introduction
 
-Often, we would like to average our analysis over a posterior set of
-phylogenetic trees, rather than use a single tree. This can be a useful way to
-account for phylogenetic uncertainty in our inferences.
+Often, we would like to average our analysis over a sample of phylogenetic
+trees, rather than use a single tree. This can be a useful way to account for
+phylogenetic uncertainty in our inferences.
 
 To deal with phylogenetic uncertainty, the `coev_fit()` function allows the user
 to declare multiPhylo objects in the `tree` argument. So long as all trees in
@@ -80,14 +80,14 @@ fit <-
 ```
 Running MCMC with 4 parallel chains...
 
-Chain 3 finished in 727.6 seconds.
-Chain 1 finished in 803.5 seconds.
-Chain 2 finished in 991.6 seconds.
-Chain 4 finished in 992.6 seconds.
+Chain 3 finished in 726.9 seconds.
+Chain 1 finished in 838.9 seconds.
+Chain 4 finished in 982.1 seconds.
+Chain 2 finished in 986.2 seconds.
 
 All 4 chains finished successfully.
-Mean chain execution time: 878.8 seconds.
-Total execution time: 992.9 seconds.
+Mean chain execution time: 883.5 seconds.
+Total execution time: 986.4 seconds.
 ```
 
 
@@ -135,13 +135,27 @@ religious_authority[3]     1.65      0.93 -0.03  3.60 1.00     8038     5883
 ```
 
 ```
-Warning: There were 12 divergent transitions after warmup.
-http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
+Warning: There were 12 divergent transitions after warmup. http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 ```
 
 The summary output correctly shows that we averaged over five trees.
 
-Note that with more trees, users should expect the computation time for these
-models to increase. If models are taking too long to fit with `cmdstanr`, users
-could try fitting the model with `nuts_sampler = "nutpie"`, as this approach
-parallelises over trees more efficiently than Stan.
+## Tree scaling
+
+By default, the `scale_trees` argument for `coev_fit()` is set to `TRUE`. This
+means that branch lengths are scaled by the maximum root age across all trees.
+In other words, the tree with the oldest root age will be scaled to have a root
+age of 1, and all other trees will be scaled by the same amount. This preserves
+the same time scale across samples of trees while helping the model to sample
+more efficiently.
+
+If users would prefer to use the unscaled phylogenetic trees, they can set
+`scale_trees = FALSE`. We advise that users take care to set sensible priors
+when using unscaled phylogenetic trees.
+
+## Computation time
+
+With more trees, users should expect the computation time for these models to
+increase. If models are taking too long to fit with `cmdstanr`, users could try
+fitting the model with `nuts_sampler = "nutpie"`, as this approach parallelises
+over trees more efficiently than Stan.

@@ -5,7 +5,7 @@ output:
     toc: true
 pkgdown:
   as_is: true
-date: "2026-10-06"
+date: "2026-11-16"
 author: "Scott Claessens"
 vignette: >
   %\VignetteIndexEntry{Accelerated sampling using JAX and nutpie}
@@ -80,31 +80,31 @@ Phylogeny: authority$phylogeny (Number of trees: 1)
 
 Autoregressive selection effects:
                     Estimate Est.Error  2.5% 97.5% Rhat Bulk_ESS Tail_ESS
-political_authority    -0.50      0.42 -1.52 -0.01 1.00     1671     1362
-religious_authority    -0.63      0.49 -1.86 -0.03 1.00     1401      866
+political_authority    -0.51      0.43 -1.61 -0.01 1.00     1083      939
+religious_authority    -0.62      0.47 -1.76 -0.02 1.00     1594     1334
 
 Cross selection effects:
                                           Estimate Est.Error  2.5% 97.5% Rhat Bulk_ESS Tail_ESS
-political_authority ⟶ religious_authority     1.57      0.70  0.12  2.94 1.00     1282     2021
-religious_authority ⟶ political_authority     1.03      0.82 -0.62  2.55 1.01      926     2049
+political_authority ⟶ religious_authority     1.53      0.76 -0.10  2.95 1.00      870     1346
+religious_authority ⟶ political_authority     1.07      0.84 -0.57  2.71 1.00      644     1886
 
 Drift parameters:
                                              Estimate Est.Error  2.5% 97.5% Rhat Bulk_ESS Tail_ESS
-sd(political_authority)                          2.30      0.75  0.81  3.73 1.01      703      904
-sd(religious_authority)                          1.38      0.81  0.10  3.03 1.01      436      628
-cor(political_authority,religious_authority)     0.36      0.29 -0.33  0.81 1.00     1648     2024
+sd(political_authority)                          2.18      0.84  0.43  3.74 1.00      467      541
+sd(religious_authority)                          1.43      0.85  0.07  3.11 1.01      439      664
+cor(political_authority,religious_authority)     0.36      0.31 -0.37  0.83 1.00     1585     1789
 
 Continuous time intercept parameters:
                     Estimate Est.Error  2.5% 97.5% Rhat Bulk_ESS Tail_ESS
-political_authority     0.29      0.90 -1.50  2.08 1.00     1950     2199
-religious_authority     0.28      0.95 -1.54  2.15 1.00     1558     2121
+political_authority     0.29      0.93 -1.53  2.07 1.00     1604     2472
+religious_authority     0.31      0.93 -1.59  2.11 1.00     1632     2174
 
 Ordinal cutpoint parameters:
                        Estimate Est.Error  2.5% 97.5% Rhat Bulk_ESS Tail_ESS
-political_authority[1]    -1.46      0.88 -3.22  0.23 1.00     1470     2063
-political_authority[2]    -0.69      0.86 -2.34  0.98 1.00     1576     2246
-political_authority[3]     1.53      0.88 -0.19  3.26 1.00     1773     2261
-religious_authority[1]    -1.52      0.93 -3.32  0.29 1.00     1571     2282
-religious_authority[2]    -0.85      0.91 -2.59  0.91 1.00     1684     2561
-religious_authority[3]     1.50      0.92 -0.25  3.31 1.00     1915     2719
+political_authority[1]    -1.51      0.88 -3.20  0.21 1.00     1335     2506
+political_authority[2]    -0.75      0.85 -2.42  0.90 1.00     1667     2591
+political_authority[3]     1.45      0.87 -0.25  3.18 1.00     1923     2557
+religious_authority[1]    -1.59      0.92 -3.44  0.26 1.00     1265     2207
+religious_authority[2]    -0.92      0.89 -2.68  0.85 1.00     1372     2400
+religious_authority[3]     1.44      0.90 -0.30  3.28 1.00     1809     2748
 ```

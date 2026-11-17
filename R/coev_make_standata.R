@@ -95,16 +95,23 @@
 #'   correlations when there are repeated observations (\code{L_residual}).
 #'   These must be entered with valid prior strings, e.g.
 #'   \code{list(A_offdiag = "normal(0, 2)")}.
-#' @param scale Logical. If \code{TRUE} (default), variables following the
-#'   \code{normal} and \code{gamma_log} response distributions are scaled before
-#'   fitting the model. Continuous variables following the \code{normal}
+#' @param scale_variables Logical. If \code{TRUE} (default), variables following
+#'   the \code{normal} and \code{gamma_log} response distributions are scaled
+#'   before fitting the model. Continuous variables following the \code{normal}
 #'   distribution are standardised (e.g., mean centered and divided by their
 #'   standard deviation) and positive real variables following the
 #'   \code{gamma_log} distribution are divided by the mean value without
 #'   centering. This approach is recommended when using default priors to
 #'   improve efficiency and ensure accurate inferences. If \code{FALSE},
 #'   variables are left unscaled for model fitting. In this case, users should
-#'   take care to set sensible priors on variables.
+#'   take care to set sensible priors.
+#' @param scale_trees Logical. If \code{TRUE} (default), phylogenetic
+#'   trees are scaled by the maximum root age across all trees before fitting
+#'   the model. All trees are scaled by the same amount to preserve the same
+#'   time scale across trees. This approach is recommended when using default
+#'   priors to improve efficiency. If \code{FALSE}, phylogenetic trees are left
+#'   unscaled for model fitting. In this case, users should take care to set
+#'   sensible priors.
 #' @param estimate_correlated_drift Logical. If \code{TRUE} (default), the model
 #'   estimates the off-diagonals for the \eqn{Q} drift matrix (i.e., correlated
 #'   drift). If \code{FALSE}, the off-diagonals for the \eqn{Q} drift matrix
@@ -228,7 +235,8 @@ coev_make_standata <- function(data, variables, id, tree,
                                effects_mat = NULL, complete_cases = FALSE,
                                lon_lat = NULL, dist_k = NA,
                                dist_cov = "exp_quad", measurement_error = NULL,
-                               prior = NULL, scale = TRUE,
+                               prior = NULL, scale_variables = TRUE,
+                               scale_trees = TRUE,
                                estimate_correlated_drift = TRUE,
                                estimate_residual = TRUE,
                                log_lik = FALSE, prior_only = FALSE,
@@ -237,19 +245,29 @@ coev_make_standata <- function(data, variables, id, tree,
   #'   input data is dimensionally commensurate
   # check arguments
   run_checks(data, variables, id, tree, effects_mat, complete_cases,
-             lon_lat, dist_k, dist_cov, measurement_error, prior, scale,
-             estimate_correlated_drift, estimate_residual, log_lik, prior_only,
-             dist_mat)
+             lon_lat, dist_k, dist_cov, measurement_error, prior,
+             scale_variables, scale_trees, estimate_correlated_drift,
+             estimate_residual, log_lik, prior_only, dist_mat)
   # coerce data argument to data frame
   #' @srrstats {G2.7, G2.10} Accepts multiple tabular forms, ensures data frame
   data <- as.data.frame(data)
-  # warning if scale = FALSE
-  if (!scale) {
+  # warning if scale_variables = FALSE
+  if (!scale_variables) {
     warning2(
       paste0(
-        "When scale is FALSE, continuous variables are left unstandardised in ",
-        "the Stan data list. Users should take care to set sensible priors ",
-        "for model fitting, rather than use default priors."
+        "When scale_variables is FALSE, continuous variables are left ",
+        "unstandardised in the Stan data list. Users should take care to set ",
+        "sensible priors for model fitting, rather than use default priors."
+      )
+    )
+  }
+  # warning if scale_trees = FALSE
+  if (!scale_trees) {
+    warning2(
+      paste0(
+        "When scale_trees is FALSE, phylogenetic trees are left unscaled on ",
+        "their original time scale. Users should take care to set sensible ",
+        "priors for model fitting, rather than use default priors."
       )
     )
   }
@@ -312,6 +330,8 @@ coev_make_standata <- function(data, variables, id, tree,
   stan_parent <- matrix(NA, n_tree, n_seg)
   stan_ts <- matrix(NA, n_tree, n_seg)
   stan_tip <- matrix(NA, n_tree, n_seg)
+  # get maximum node depth across all trees
+  max_depth <- max(unlist(lapply(tree, \(x) ape::node.depth.edgelength(x))))
   # loop over phylogenetic trees
   for (t in seq_along(tree)) {
     # cut up tree into segments
@@ -325,14 +345,15 @@ coev_make_standata <- function(data, variables, id, tree,
     # find the "parent" node for each node and tip of the tree
     parent <- phangorn::Ancestors(tree[[t]], node_seq, type = "parent")
     # parent time indicates amount of time since the parent node
-    # scaled by the total depth of the tree
     parent_time <- rep(NA, length(node_seq))
     parent_time[1] <- -99 # placeholder for ancestral state
     for (i in 2:length(parent_time)) {
       parent_time[i] <-
         (ape::node.depth.edgelength(tree[[t]])[node_seq[i]] -
-         ape::node.depth.edgelength(tree[[t]])[parent[i]]) /
-        max(ape::node.depth.edgelength(tree[[t]]))
+         ape::node.depth.edgelength(tree[[t]])[parent[i]])
+      if (scale_trees) {
+        parent_time[i] <- parent_time[i] / max_depth
+      }
     }
     # indicate whether a node in the seq is a tip
     tip <- ifelse(node_seq > length(tree[[t]]$tip.label), 0, 1)
@@ -374,11 +395,11 @@ coev_make_standata <- function(data, variables, id, tree,
   # get data matrix
   y <- list()
   for (j in seq_along(variables)) {
-    if (scale && variables[[j]] == "normal") {
+    if (scale_variables && variables[[j]] == "normal") {
       # standardised continuous variables
       #' @srrstats {G2.4, G2.4b} Convert to continuous
       y[[names(variables)[j]]] <- as.numeric(scale(data[, names(variables)[j]]))
-    } else if (scale && variables[[j]] == "gamma_log") {
+    } else if (scale_variables && variables[[j]] == "gamma_log") {
       # positive reals scaled by sample mean
       #' @srrstats {G2.4, G2.4b} Convert to continuous
       #' @srrstats {G2.15} Software does not assume non-missingness (na.rm)
@@ -410,8 +431,8 @@ coev_make_standata <- function(data, variables, id, tree,
         se_column <- measurement_error[[names(variables)[j]]]
         # get vector of standard error values
         se_values <- data[[se_column]]
-        if (scale) {
-          # if scale = TRUE, need to also scale the standard errors correctly
+        if (scale_variables) {
+          # if scale_variables = TRUE, need to also scale the standard errors
           #' @srrstats {G2.15} Software does not assume non-missingness (na.rm)
           se_values <- se_values / sd(data[[names(variables)[j]]], na.rm = TRUE)
         }

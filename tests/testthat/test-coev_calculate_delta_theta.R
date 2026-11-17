@@ -6,12 +6,12 @@ test_that("coev_calculate_delta_theta() produces expected errors and output", {
   m4 <- readRDS(test_path("fixtures", "coevfit_example_04.rds"))
   m5 <- readRDS(test_path("fixtures", "coevfit_example_05.rds"))
   m6 <- readRDS(test_path("fixtures", "coevfit_example_06.rds"))
-  m1 <- reload_fit(m1, filename = "coevfit_example_01-1.csv")
-  m2 <- reload_fit(m2, filename = "coevfit_example_02-1.csv")
-  m3 <- reload_fit(m3, filename = "coevfit_example_03-1.csv")
-  m4 <- reload_fit(m4, filename = "coevfit_example_04-1.csv")
-  m5 <- reload_fit(m5, filename = "coevfit_example_05-1.csv")
-  m6 <- reload_fit(m6, filename = "coevfit_example_06-1.csv")
+  m1 <- reload_fit(m1, filename = "coevfit_example_01-01.csv")
+  m2 <- reload_fit(m2, filename = "coevfit_example_02-01.csv")
+  m3 <- reload_fit(m3, filename = "coevfit_example_03-01.csv")
+  m4 <- reload_fit(m4, filename = "coevfit_example_04-01.csv")
+  m5 <- reload_fit(m5, filename = "coevfit_example_05-01.csv")
+  m6 <- reload_fit(m6, filename = "coevfit_example_06-01.csv")
   # expect the following errors
   #' @srrstats {G5.2, G5.2b} Test all error messages
   expect_error(
@@ -66,7 +66,7 @@ test_that("coev_calculate_delta_theta() produces expected errors and output", {
 test_that("coev_calculate_delta_theta() works with repeated observations", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_07.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_07-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_07-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # should run without error and produce draws_array object
@@ -84,7 +84,7 @@ test_that("coev_calculate_delta_theta() works with repeated observations", {
 test_that("coev_calculate_delta_theta() works with multiPhylo object", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_08.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_08-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_08-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # should run without error and produce draws_array object
@@ -102,7 +102,7 @@ test_that("coev_calculate_delta_theta() works with multiPhylo object", {
 test_that("coev_calculate_delta_theta() works when Q offdiag == 0", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_09.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_09-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_09-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # should run without error and produce draws_array object
@@ -120,7 +120,7 @@ test_that("coev_calculate_delta_theta() works when Q offdiag == 0", {
 test_that("coev_calculate_delta_theta() works with measurement error", {
   # load model
   m <- readRDS(test_path("fixtures", "coevfit_example_10.rds"))
-  m <- reload_fit(m, filename = "coevfit_example_10-1.csv")
+  m <- reload_fit(m, filename = "coevfit_example_10-01.csv")
   # suppress warnings
   sw <- suppressWarnings
   # should run without error and produce draws_array object

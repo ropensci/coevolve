@@ -1,6 +1,6 @@
 test_that("coev_ancestral_states() produces expected errors", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   expect_error(
     coev_ancestral_states(object = "fail"),
     "Argument 'object' must be a fitted coevolutionary model of class coevfit.",
@@ -63,7 +63,7 @@ test_that("coev_ancestral_states() produces expected errors", {
 
 test_that("coev_ancestral_states() returns correct structure", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m01))
 
@@ -93,7 +93,7 @@ test_that("coev_ancestral_states() returns correct structure", {
 
 test_that("coev_ancestral_states() nodes = 'all' includes tips", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   # latent scale: one row per node x variable (no category expansion)
   result <- sw(coev_ancestral_states(m01, nodes = "all"))
@@ -107,7 +107,7 @@ test_that("coev_ancestral_states() nodes = 'all' includes tips", {
 
 test_that("coev_ancestral_states() nodes = integer vector works", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   n_tips <- m01$stan_data$N_tips
   target_nodes <- c(n_tips + 1, n_tips + 2)
@@ -119,7 +119,7 @@ test_that("coev_ancestral_states() nodes = integer vector works", {
 
 test_that("coev_ancestral_states() summary = FALSE returns draws", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m01, summary = FALSE))
   expect_true(is.list(result))
@@ -137,7 +137,7 @@ test_that("coev_ancestral_states() summary = FALSE returns draws", {
 
 test_that("coev_ancestral_states() variables subsets correctly", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m01, variables = c("u", "v")))
   expect_equal(sort(unique(result$variable)), sort(c("u", "v")))
@@ -148,7 +148,7 @@ test_that("coev_ancestral_states() variables subsets correctly", {
 
 test_that("coev_ancestral_states() prob changes CI width", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   narrow <- sw(coev_ancestral_states(m01, prob = 0.5))
   wide <- sw(coev_ancestral_states(m01, prob = 0.99))
@@ -159,7 +159,7 @@ test_that("coev_ancestral_states() prob changes CI width", {
 
 test_that("coev_ancestral_states() bernoulli response is [0,1]", {
   m09 <- readRDS(test_path("fixtures", "coevfit_example_09.rds"))
-  m09 <- reload_fit(m09, filename = "coevfit_example_09-1.csv")
+  m09 <- reload_fit(m09, filename = "coevfit_example_09-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m09, scale = "response"))
   expect_true(all(result$estimate >= 0 & result$estimate <= 1))
@@ -169,7 +169,7 @@ test_that("coev_ancestral_states() bernoulli response is [0,1]", {
 
 test_that("coev_ancestral_states() poisson response is positive", {
   m04 <- readRDS(test_path("fixtures", "coevfit_example_04.rds"))
-  m04 <- reload_fit(m04, filename = "coevfit_example_04-1.csv")
+  m04 <- reload_fit(m04, filename = "coevfit_example_04-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m04, scale = "response"))
   expect_true(all(result$estimate > 0))
@@ -178,7 +178,7 @@ test_that("coev_ancestral_states() poisson response is positive", {
 
 test_that("coev_ancestral_states() normal response = latent", {
   m10 <- readRDS(test_path("fixtures", "coevfit_example_10.rds"))
-  m10 <- reload_fit(m10, filename = "coevfit_example_10-1.csv")
+  m10 <- reload_fit(m10, filename = "coevfit_example_10-01.csv")
   sw <- suppressWarnings
   latent <- sw(coev_ancestral_states(m10, scale = "latent"))
   response <- sw(coev_ancestral_states(m10, scale = "response"))
@@ -189,7 +189,7 @@ test_that("coev_ancestral_states() normal response = latent", {
 
 test_that("coev_ancestral_states() gamma response is positive", {
   m01 <- readRDS(test_path("fixtures", "coevfit_example_01.rds"))
-  m01 <- reload_fit(m01, filename = "coevfit_example_01-1.csv")
+  m01 <- reload_fit(m01, filename = "coevfit_example_01-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(
     m01, variables = "u", scale = "response"
@@ -200,7 +200,7 @@ test_that("coev_ancestral_states() gamma response is positive", {
 
 test_that("coev_ancestral_states() ordinal response uses category column", {
   m02 <- readRDS(test_path("fixtures", "coevfit_example_02.rds"))
-  m02 <- reload_fit(m02, filename = "coevfit_example_02-1.csv")
+  m02 <- reload_fit(m02, filename = "coevfit_example_02-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(
     m02, variables = "x", scale = "response"
@@ -219,7 +219,7 @@ test_that("coev_ancestral_states() ordinal response uses category column", {
 test_that("coev_ancestral_states() mixed ordinal/non-ordinal output", {
   # m02 has bernoulli_logit + ordered_logistic
   m02 <- readRDS(test_path("fixtures", "coevfit_example_02.rds"))
-  m02 <- reload_fit(m02, filename = "coevfit_example_02-1.csv")
+  m02 <- reload_fit(m02, filename = "coevfit_example_02-01.csv")
   sw <- suppressWarnings
   result <- sw(coev_ancestral_states(m02, scale = "response"))
   ord_vars <- names(m02$variables)[
@@ -237,7 +237,7 @@ test_that("coev_ancestral_states() mixed ordinal/non-ordinal output", {
 
 test_that("coev_ancestral_states() multi-tree tree_id works", {
   m08 <- readRDS(test_path("fixtures", "coevfit_example_08.rds"))
-  m08 <- reload_fit(m08, filename = "coevfit_example_08-1.csv")
+  m08 <- reload_fit(m08, filename = "coevfit_example_08-01.csv")
   sw <- suppressWarnings
   result1 <- sw(coev_ancestral_states(m08, tree_id = 1))
   expect_true(is.data.frame(result1))
@@ -248,7 +248,7 @@ test_that("coev_ancestral_states() multi-tree tree_id works", {
 
 test_that("coev_ancestral_states() multi-tree default = tree 1", {
   m08 <- readRDS(test_path("fixtures", "coevfit_example_08.rds"))
-  m08 <- reload_fit(m08, filename = "coevfit_example_08-1.csv")
+  m08 <- reload_fit(m08, filename = "coevfit_example_08-01.csv")
   sw <- suppressWarnings
   result_default <- sw(coev_ancestral_states(m08))
   result_t1 <- sw(coev_ancestral_states(m08, tree_id = 1))
@@ -257,7 +257,7 @@ test_that("coev_ancestral_states() multi-tree default = tree 1", {
 
 test_that("coev_ancestral_states() single-node response works (ordinal)", {
   m02 <- readRDS(test_path("fixtures", "coevfit_example_02.rds"))
-  m02 <- reload_fit(m02, filename = "coevfit_example_02-1.csv")
+  m02 <- reload_fit(m02, filename = "coevfit_example_02-01.csv")
   sw <- suppressWarnings
   n_tips <- m02$stan_data$N_tips
   result <- sw(coev_ancestral_states(
@@ -271,7 +271,7 @@ test_that("coev_ancestral_states() single-node response works (ordinal)", {
 
 test_that("coev_ancestral_states() single-node response works (non-ordinal)", {
   m09 <- readRDS(test_path("fixtures", "coevfit_example_09.rds"))
-  m09 <- reload_fit(m09, filename = "coevfit_example_09-1.csv")
+  m09 <- reload_fit(m09, filename = "coevfit_example_09-01.csv")
   sw <- suppressWarnings
   n_tips <- m09$stan_data$N_tips
   result <- sw(coev_ancestral_states(
@@ -289,7 +289,7 @@ test_that("coev_ancestral_states() works across fixture models", {
   )
   for (id in fixtures) {
     rds <- paste0("coevfit_example_", id, ".rds")
-    csv <- paste0("coevfit_example_", id, "-1.csv")
+    csv <- paste0("coevfit_example_", id, "-01.csv")
     m <- readRDS(test_path("fixtures", rds))
     m <- reload_fit(m, filename = csv)
     expect_no_error(sw(coev_ancestral_states(m)))
